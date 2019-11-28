@@ -31,7 +31,7 @@ export default class BaseReducer {
         return {
           ...state,
           isFetching: false,
-          data: action.res.data
+          data: action.data
         }
     }
 
