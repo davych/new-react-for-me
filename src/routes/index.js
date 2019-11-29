@@ -1,17 +1,16 @@
 import React from 'react'
-import { Route, Router, Switch } from 'react-router-dom'
-import RouteGuard from './RouteGuard'
-import Main from './components/Main'
+import { Router, Route, Switch } from 'react-router'
 import { createHashHistory } from 'history'
+import Home from '../page/home'
 
-const routes = [
-  
-]
 
-export const history = createHashHistory()
 
 export default props => (
-  <React.Fragment>
-   
-  </React.Fragment>
+  <Router history={createHashHistory()}>
+    <Switch>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Switch>
+  </Router>
 )

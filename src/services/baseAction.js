@@ -5,7 +5,11 @@ import {
     LOAD_RESOURCE_ERROR
 } from './baseReducer'
 export default class BaseActions {
-    service = {}
+    services = {}
+
+    constructor ({ services }) {
+        this.services = services
+    }
     
     fetching = { type: LOAD_RESOURCE }
     fetchSuccess = data => ({ type: LOAD_RESOURCE_SUCCESS, data })
@@ -13,29 +17,29 @@ export default class BaseActions {
 
     find = (query) => (dispatch) => {
         dispatch(this.fetching)
-        return this.service.find({ query })
-                .then(res => this.fetchSuccess(res.data))
-                .catch(error => this.fetchError(res.JSON()))
+        this.services.find({ query })
+                .then(res => dispatch(this.fetchSuccess(res.data)))
+                .catch(error => dispatch(this.fetchError(error.toJSON())))
     }
 
     findById = (id) => (dispatch) => {
         dispatch(this.fetching)
-        return this.service.findById({ id })
-                .then(res => this.fetchSuccess(res.data))
-                .catch(error => this.fetchError(res.JSON()))
+        this.services.findById({ id })
+                .then(res => dispatch(this.fetchSuccess(res.data)))
+                .catch(error => dispatch(this.fetchError(error.toJSON())))
     }
 
     create = (payload) => (dispatch) => {
         dispatch(this.fetching)
-        return this.service.create({ payload })
-                .then(res => this.fetchSuccess(res.data))
-                .catch(error => this.fetchError(res.JSON()))
+        this.services.create({ payload })
+                .then(res => dispatch(this.fetchSuccess(res.data)))
+                .catch(error => dispatch(this.fetchError(error.toJSON())))
     }
 
     update = ({ payload, id }) => (dispatch) => {
         dispatch(this.fetching)
-        return this.service.update({ payload, id })
-                .then(res => this.fetchSuccess(res.data))
-                .catch(error => this.fetchError(res.JSON()))
+        this.services.update({ payload, id })
+                .then(res => dispatch(this.fetchSuccess(res.data)))
+                .catch(error => dispatch(this.fetchError(error.toJSON())))
     }
 }

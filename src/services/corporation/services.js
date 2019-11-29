@@ -1,2 +1,2 @@
-import BaseServices from 'services/baseServices'
+import BaseServices from '../baseServices'
 export default new BaseServices('corporate')

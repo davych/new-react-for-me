@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cookie from 'react-cookies'
 import lodash from 'lodash'
-import { apiUrl } from 'environments.js'
+import { apiUrl } from '../environments.js'
 
 const toast = {
     error: err => {

@@ -12,11 +12,9 @@ export default class BaseReducer {
 
     reducer = (state = this.initialState, action) => {
         const func = this[action.type]
-
-        if (!method || action.error) {
+        if (!func) {
             return state
         }
-
         return func.call(this, state, action)
     }
 

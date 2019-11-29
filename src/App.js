@@ -5,10 +5,12 @@ import './App.css'
 import Routes from './routes'
 import theme from './theme'
 import configStore from './configStore'
+const store = configStore()
+window.store = store
 class App extends Component {
   render () {
     return (
-      <Provider store={configStore()}>
+      <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Routes />
         </ThemeProvider>
