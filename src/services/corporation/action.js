@@ -1,4 +1,5 @@
-import BaseAction from '../baseAction'
-import services from './services'
-const actions = new BaseAction({ services })
-export default actions
+import createAction from '../createAction'
+const createCorporationAction = createAction('create_corporation')
+export {
+    createCorporationAction
+}

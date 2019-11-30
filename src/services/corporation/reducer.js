@@ -1,3 +1,6 @@
 import BaseReducer from '../baseReducer'
-const corporation = new BaseReducer()
-export default corporation.reducer
+import { createCorporationAction } from './action'
+const createCorporationReducer = new BaseReducer(createCorporationAction)
+export {
+    createCorporationReducer
+}

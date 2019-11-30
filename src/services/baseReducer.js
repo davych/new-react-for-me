@@ -1,8 +1,35 @@
-export const LOAD_RESOURCE = 'APP/LOAD_RESOURCE'
-export const LOAD_RESOURCE_SUCCESS = 'APP/LOAD_RESOURCE_SUCCESS'
-export const LOAD_RESOURCE_ERROR = 'APP/LOAD_RESOURCE_ERROR'
 
 export default class BaseReducer {
+
+    constructor(routine) {
+        this.routine = routine
+
+        // 
+        this[this.routine.REQUEST] = (state, action) => {
+            return {
+              ...state,
+              isFetching: true
+            }
+        }
+
+        this[this.routine.SUCCESS] = (state, action) => {
+            return {
+              ...state,
+              isFetching: false,
+              data: action.data
+            }
+        }
+    
+        this[this.routine.FAILURE] = (state, action) => {
+            return {
+              ...state,
+              isFetching: false,
+              error: action.error
+            }
+        }
+
+        return this.reducer
+    }
 
     initialState = {
         isFetching: false,
@@ -16,28 +43,5 @@ export default class BaseReducer {
             return state
         }
         return func.call(this, state, action)
-    }
-
-    [LOAD_RESOURCE](state, action) {
-        return {
-          ...state,
-          isFetching: true
-        }
-    }
-
-    [LOAD_RESOURCE_SUCCESS](state, action) {
-        return {
-          ...state,
-          isFetching: false,
-          data: action.data
-        }
-    }
-
-    [LOAD_RESOURCE_ERROR](state, action) {
-        return {
-          ...state,
-          isFetching: false,
-          error: action.error
-        }
     }
 }

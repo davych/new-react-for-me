@@ -5,8 +5,11 @@ import './App.css'
 import Routes from './routes'
 import theme from './theme'
 import configStore from './configStore'
-const store = configStore()
+import rootSaga from './saga'
+const {store, run} = configStore()
+run(rootSaga)
 window.store = store
+
 class App extends Component {
   render () {
     return (
