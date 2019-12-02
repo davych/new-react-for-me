@@ -19,7 +19,8 @@ export function* create(payload = {}) {
 
 }
 
-export function* flow() {
-    const { payload } = yield take(createCorporationAction.TRIGGER)
-    yield call(create, payload)
+export function* watchCreateCorporation() {
+    yield take(createCorporationAction.TRIGGER, create)
 }
+
+export default corporationSagas = [watchCreateCorporation()]
