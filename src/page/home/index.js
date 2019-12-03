@@ -1,9 +1,11 @@
 import { connect } from 'react-redux'
 import Home from './home'
-import { createCorporationAction } from  '../../services/corporation/action'
+import { actions } from  '../../services/corporation'
 
 const mapStateToProps = ({ createCorporationReducer }) => ({
     createCorporationReducer
 })
 
-export default connect(mapStateToProps, {createCorporationAction})(Home)
+const createCorporation = actions.createCorporationAction.TRIGGER
+
+export default connect(mapStateToProps, { createCorporation })(Home)
