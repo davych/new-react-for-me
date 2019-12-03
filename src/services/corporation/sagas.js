@@ -1,9 +1,11 @@
-import { put, call, take, cancelled } from 'redux-saga/effects'
+import { put, call, takeLatest, cancelled } from 'redux-saga/effects'
 import lodash from 'lodash'
-import { createCorporationAction } from './action'
+import { actions } from './ducks'
 import services from './services'
 
-export function* create(payload = {}) {
+const { createCorporationAction } = actions
+
+export function* create({payload = {}}) {
  try {
     yield put(createCorporationAction.request())
     const res = yield call([services, services.create], { payload })
@@ -20,7 +22,10 @@ export function* create(payload = {}) {
 }
 
 export function* watchCreateCorporation() {
-    yield take(createCorporationAction.TRIGGER, create)
+  console.log(createCorporationAction.TRIGGER)
+    yield takeLatest(createCorporationAction.TRIGGER, create)
 }
 
-export default corporationSagas = [watchCreateCorporation()]
+const corporationSagas = [watchCreateCorporation()]
+
+export default corporationSagas

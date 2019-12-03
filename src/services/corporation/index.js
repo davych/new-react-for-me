@@ -1,11 +1,8 @@
-import { createCorporationAction } from './action'
-import * as reducers from './reducer'
-import * as actions from './action'
-import services from './services'
-import { flow } from './saga'
+import { actions, reducers } from './ducks'
+import corporationSagas from './sagas'
 
 export {
-    reducers, services, actions
+    reducers, actions
 }
 
-export default flow
+export default corporationSagas

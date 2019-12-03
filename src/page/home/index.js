@@ -6,6 +6,10 @@ const mapStateToProps = ({ createCorporationReducer }) => ({
     createCorporationReducer
 })
 
-const createCorporation = actions.createCorporationAction.TRIGGER
+const mapDispatchToProps = dispatch => {
+    return {
+      createCorporation: payload => dispatch(actions.createCorporationAction.trigger(payload))
+    }
+  }
 
-export default connect(mapStateToProps, { createCorporation })(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
