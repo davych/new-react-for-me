@@ -8,7 +8,7 @@
     "esnext-scripts": "^1.5.2",
     "formik": "^2.0.6",
     "history": "^4.10.1",
-    "immer": "^5.0.0",
+    "immer": "^8.0.1",
     "react": "^16.12.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.12.0",
